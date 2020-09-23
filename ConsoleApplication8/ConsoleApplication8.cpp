@@ -114,6 +114,7 @@ int main() {
 	cout << "\n*column setter used*" << endl;
 	cout << "color = " << picture.get(68, 1) << endl;
 	picture.show();
+	cout << endl;
 
 	return 0;
 }
