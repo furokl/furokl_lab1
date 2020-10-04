@@ -1,6 +1,4 @@
 ﻿#include <iostream>
-#include <cmath>
-#include <cassert>
 
 using std::cout;
 using std::endl;
