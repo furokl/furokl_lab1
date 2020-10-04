@@ -1,56 +1,9 @@
 ﻿#include <iostream>
 #include <cmath>
+#include <cassert>
 
 using std::cout;
 using std::endl;
-// 237x421
-const int dataSize = 100'000;
-const static int line = 80;		// Установка размера строки
-
-float temp = ceil(static_cast<float>(dataSize) / static_cast<float>(line));
-const static int column = static_cast<int>(temp);
-
-/*
-	Класс для индефикации пикселя
-
-class ID_Generator
-{
-private:
-	static int s_idGenerator;
-	int m_id;
-
-public:
-	ID_Generator() { m_id = s_idGenerator++; }
-	int getID() const { return m_id; }
-};
-
-int ID_Generator::s_idGenerator = 1;
-*/
-/*
-	Класс для цвета
-
-class RGBA
-{
-private:
-	uint8_t m_red;
-	uint8_t m_green;
-	uint8_t m_blue;
-	uint8_t m_alpha;
-
-public:
-	RGBA (uint8_t red = 0, uint8_t green = 0, uint8_t blue = 0, uint8_t alpha = 255)
-		: m_red(red), m_green(green), m_blue(blue), m_alpha(alpha)
-	{
-	}
-
-	void printRGBA(){
-		cout << "R = " << static_cast<int>(m_red) << ';' <<
-			" G = " << static_cast<int>(m_green) << ';' <<
-			" B = " << static_cast<int>(m_blue) << ';' <<
-			" A = " << static_cast<int>(m_alpha) << '\n';
-	}
-};
-*/
 
 class Image
 {
@@ -60,61 +13,62 @@ private:
 	int data[100'000];
 
 public:
-	Image(int tmx, int tmy) {
-		// Я не должен влезть сюда, чтобы выдавать картинку нужного размера?
-		for (int i = 0; i < dataSize; i++)
-			data[i] = 0;					
+	Image(int tmx = 200, int tmy = 200) 
+		: mx(tmx), my(tmy)
+	{
+		for (int i = 0; i < tmx*tmy; i++)
+			data[i] = 0;
 	}
 
 	int getMx()				{ return mx; }
 	int getMy()				{ return my; }
-	int get(int x, int y)	{ return data[(x - 1) + (y - 1) * line]; }
+	int get(int x, int y)	{ return data[(x - 1) + (y - 1) * x]; }
 
 	void show() {
-		//for (const auto &i : data){		// если бы не if
-		for (int i = 0; i < dataSize; i++) {
+		for (int i = 0; i < mx*my; i++) {
 			cout << data[i];
-			if (i % line == line - 1)
+			if (i % mx == mx - 1)
 				cout << '\n';
 		}
+		cout << "\t*Show func used* size: (" << mx << 'x' << my << ')';
 	}
 
-	// один элемент
 	void set(int x, int y, int color) {
-		if (x < 1 || x > line)							return;
-		if (y < 1 || y > column)						return;
-		if ((y == column) && (x > (dataSize % line)))	return;		// если остаток
+		if (x < 1 || x > 200)	return;
+		if (y < 1 || y > 200)	return; // Ограничение до 200x200
 
 		mx = x;
 		my = y;
-		int temp = (x - 1) + (y - 1) * line;
-		data[temp] = color;
+		for (int i = 0; i < x*y; i++)
+			data[i] = color;
+
+		cout << "\t*Setter used*\n\t\t\tx: " << x 
+			<< "\n\t\t\ty: " << y 
+			<< "\n\t\t\tcolor: " << color << endl;
 	}
 
-	// вертикальная полоска
+	// Вертикальная полоса
 	void set(int x, int color) {
-		if (x < 1 || x >= line)		return;
+		if (x < 1 || x > 200)	return;
+		if (my < 1 || my > 200)	return;
 
-		for (int i = 0; i < column; i++) {
-			int temp = x - 1 + i * line;
-			if (temp > dataSize)	return;		// если остаток
+		for (int i = 0; i < my; i++) {
+			int temp = x - 1 + i * mx;
 			data[temp] = color;
 		}
+
+		cout << "\t*Setter used*\n\t\t\tx: " << x
+			<< "\n\t\t\tcolor: " << color << endl;
 	}
 };
 
 int main() {
 	cout << "\n\n\t\tProgramm started...\n\n";
-	Image picture(10, 10);
-	cout << '\t' << line << 'x' << column << endl;
-	picture.set(1, 1, 1);
-	cout << "*setter used*\nx = " << picture.getMx() << "\ny = " << picture.getMy() << endl;
-	cout << "color = " << picture.get(1, 1) << endl;
-	picture.set(68, 1);
-	cout << "\n*column setter used*" << endl;
-	cout << "color = " << picture.get(68, 1) << endl;
-	picture.show();
-	cout << endl;
+	Image a(3, 3);
+	a.show();
+	a.set(5, 5, 1);
+	a.set(2, 0);
+	a.show();
 
 	return 0;
 }
