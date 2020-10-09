@@ -18,35 +18,38 @@ public:
 			data[i] = 0;
 	}
 
+	
 	int getMx()				{ return mx; }
 	int getMy()				{ return my; }
 	int get(int x, int y)	{ return data[(x - 1) + (y - 1) * x]; }
 
 	void show() {
+		cout << "\t\t*Show func used* size: (" << mx << 'x' << my << ')' << endl;
 		for (int i = 0; i < mx*my; i++) {
 			cout << data[i];
 			if (i % mx == mx - 1)
 				cout << '\n';
 		}
-		cout << "\t*Show func used* size: (" << mx << 'x' << my << ')';
 	}
 
 	void set(int x, int y, int color) {
+		cout << "\t\t*Setter used*\n\tx: " << x
+			<< "\n\ty: " << y
+			<< "\n\tcolor: " << color << endl;
+
 		if (x < 1 || x > 200)	return;
-		if (y < 1 || y > 200)	return; // Ограничение до 200x200
+		if (y < 1 || y > 200)	return;
 
 		mx = x;
 		my = y;
 		for (int i = 0; i < x*y; i++)
 			data[i] = color;
-
-		cout << "\t*Setter used*\n\t\t\tx: " << x 
-			<< "\n\t\t\ty: " << y 
-			<< "\n\t\t\tcolor: " << color << endl;
 	}
 
-	// Вертикальная полоса
 	void set(int x, int color) {
+		cout << "\t\t*Setter used*\n\tx: " << x
+			<< "\n\tcolor: " << color << endl;
+
 		if (x < 1 || x > 200)	return;
 		if (my < 1 || my > 200)	return;
 
@@ -54,9 +57,6 @@ public:
 			int temp = x - 1 + i * mx;
 			data[temp] = color;
 		}
-
-		cout << "\t*Setter used*\n\t\t\tx: " << x
-			<< "\n\t\t\tcolor: " << color << endl;
 	}
 };
 
@@ -65,6 +65,7 @@ int main() {
 	Image a(3, 3);
 	a.show();
 	a.set(5, 5, 1);
+	a.show();
 	a.set(2, 0);
 	a.show();
 
