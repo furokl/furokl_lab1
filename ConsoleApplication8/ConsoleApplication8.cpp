@@ -70,10 +70,8 @@ public:
 			<< "\n\tcolor: " << color << endl;
 		assert(x > 1 && x < 200);
 
-		for (int i = 0; i < my; i++) {
-			int temp = x - 1 + i * mx;
-			data[temp] = color;
-		}
+		for (int i = 0; i < my; i++) 
+			data[x - 1 + i * mx] = color;
 	}
 
 	void show() {
