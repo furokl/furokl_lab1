@@ -41,10 +41,40 @@ public:
 		assert(tmy >= 1 && tmy <= 200);
 	}
 
-	
 	int getMx()				{ return mx; }
 	int getMy()				{ return my; }
 	int get(int x, int y)	{ return data[(x - 1) + (y - 1) * x]; }
+	// set x*y
+	void set(int x, int y, int color) {
+		cout << "\t\t*Setter used*\n\tsize: ("
+			<< x << 'x' << y << ')'
+			<< "\n\tcolor: " << color << endl;
+		assert(x > 1 && x < 200);
+		assert(y > 1 && y < 200);
+
+		int temp = mx - x;
+
+		for (int i = 0; i < mx*my; i++) {
+			data[i] = color;
+			if (i % x == x - 1) {
+				i += temp;
+				x += mx;
+			}
+			if (i == ((mx*my) - (my - y)*mx) - 1)
+				break;
+		}
+	}
+	// set y
+	void set(int x, int color) {
+		cout << "\t\t*Setter used*\n\tx: " << x
+			<< "\n\tcolor: " << color << endl;
+		assert(x > 1 && x < 200);
+
+		for (int i = 0; i < my; i++) {
+			int temp = x - 1 + i * mx;
+			data[temp] = color;
+		}
+	}
 
 	void show() {
 		cout << "\t\t*Show func used* size: (" << mx << 'x' << my << ')' << endl;
@@ -54,39 +84,13 @@ public:
 				cout << '\n';
 		}
 	}
-	// set x*y
-	void set(int x, int y, int color) {
-		cout << "\t\t*Setter used*\n\tx: " << x
-			<< "\n\ty: " << y
-			<< "\n\tcolor: " << color << endl;
-		if (x < 1 || x > 200)	return;
-		if (y < 1 || y > 200)	return;
-
-		mx = x;
-		my = y;
-		for (int i = 0; i < x*y; i++)
-			data[i] = color;
-	}
-	// set y
-	void set(int x, int color) {
-		cout << "\t\t*Setter used*\n\tx: " << x
-			<< "\n\tcolor: " << color << endl;
-
-		if (x < 1 || x > 200)	return;
-		if (my < 1 || my > 200)	return;
-
-		for (int i = 0; i < my; i++) {
-			int temp = x - 1 + i * mx;
-			data[temp] = color;
-		}
-	}
 };
 
 int main() {
 	cout << "\n\n\t\tProgramm started...\n\n";
-	Image a(20, 5);
+	Image a(10, 10);
 	a.show();
-	a.set(10, 10, 1);
+	a.set(8, 6, 1);
 	a.show();
 	a.set(5, 0);
 	a.set(6, 0);
