@@ -12,8 +12,13 @@ private:
 	int my;
 	int *data = new int[mx*my]();
 public:
-	Image(int x, int y);
-	~Image();
+	Image(int x, int y)
+		: mx(x), my(y){
+	}
+	~Image(){
+		delete[] data;
+		data = nullptr;
+	}
 	int getMx() { return mx; }
 	int getMy() { return my; }
 	int get(int x, int y);

@@ -1,5 +1,5 @@
 ﻿  ConsoleApplication8.cpp
   Image.cpp
   Создание кода...
-c:\users\даниил\source\repos\consoleapplication8\consoleapplication8\image.cpp(25): warning C4715: Image::get: значение возвращается не при всех путях выполнения
+c:\users\даниил\source\repos\consoleapplication8\consoleapplication8\image.cpp(16): warning C4715: Image::get: значение возвращается не при всех путях выполнения
   ConsoleApplication8.vcxproj -> C:\Users\Даниил\source\repos\ConsoleApplication8\x64\Debug\ConsoleApplication8.exe

@@ -1,15 +1,6 @@
 #include "image.h"
 
-Image:: Image(int x, int y)
-	: mx(x), my(y)
-{
-}
-Image:: ~Image()
-{
-	delete[] data;
-	data = nullptr;
-}
-// геттер точки
+// get X, Y
 int Image::get(int x, int y) {
 	try {
 		if (x < 1 || x > mx)
@@ -23,7 +14,7 @@ int Image::get(int x, int y) {
 		cout << "!!!\tinvalid variable\tget:\t" << ex << '\n';
 	}
 }
-// сеттер точки
+// set X, Y
 void Image::set(int x, int y, int color) {
 	try {
 		if (x < 1 || x > mx)
@@ -37,7 +28,7 @@ void Image::set(int x, int y, int color) {
 		cout << "!!!\tinvalid variable\tset:\t" << ex << '\n';
 	}
 }
-// сеттер полоски по y
+// set Y line
 void Image::setY(int x, int color) {
 	try {
 		if (x < 1 || x > mx)
@@ -50,7 +41,7 @@ void Image::setY(int x, int color) {
 		cout << "!!!\tinvalid variable\tsetY:\t" << ex << '\n';
 	}
 }
-// сеттер полоски по x
+// set X line
 void Image::setX(int y, int color) {
 	try {
 		if (y < 1 || y > mx)
@@ -63,7 +54,7 @@ void Image::setX(int y, int color) {
 		cout << "!!!\tinvalid variable\tsetX:\t" << ex << '\n';
 	}
 }
-// демонстрация изображения
+// show picture
 void Image::show() {
 	for (int i = 0; i < mx*my; i++) {
 		cout << data[i];
