@@ -2,16 +2,15 @@
 
 Image::Image(int x, int y)
 	: mx(x), my(y) {
-
 	data = new (std::nothrow) int[mx*my]();
-	if (!data) {
+	if (!data)
 		cout << "Could not allocate memory" << endl;
-	}
 }
 Image::~Image() {
 	delete[] data;
 	data = nullptr;
 }
+
 // get X, Y
 int Image::get(int x, int y) {
 	try {
@@ -26,8 +25,9 @@ int Image::get(int x, int y) {
 		cout << "!!!\tinvalid variable\tget:\t" << ex << endl;
 	}
 }
+
 // set X, Y
-void Image::set(int x, int y, uint8_t color) {
+void Image::set(int x, int y, int color) {
 	try {
 		if (x < 1 || x > mx)
 			throw x;
@@ -40,8 +40,9 @@ void Image::set(int x, int y, uint8_t color) {
 		cout << "!!!\tinvalid variable\tset:\t" << ex << endl;
 	}
 }
+
 // set Y line
-void Image::setY(int x, uint8_t color) {
+void Image::setY(int x, int color) {
 	try {
 		if (x < 1 || x > mx)
 			throw x;
@@ -53,8 +54,9 @@ void Image::setY(int x, uint8_t color) {
 		cout << "!!!\tinvalid variable\tsetY:\t" << ex << endl;
 	}
 }
+
 // set X line
-void Image::setX(int y, uint8_t color) {
+void Image::setX(int y, int color) {
 	try {
 		if (y < 1 || y > mx)
 			throw y;
@@ -66,6 +68,7 @@ void Image::setX(int y, uint8_t color) {
 		cout << "!!!\tinvalid variable\tsetX:\t" << ex << endl;
 	}
 }
+
 // show picture
 void Image::show() {
 	for (int i = 0; i < mx*my; i++) {
@@ -77,3 +80,22 @@ void Image::show() {
 	}
 	cout << '\n';
 }
+
+// cin >>
+const int Image::cinFunc() {
+	while (true) {
+		int a;
+		cin >> a;
+
+		if (cin.fail()) {
+			cin.clear(); 
+			cin.ignore(32767, '\n');
+			cout << "\n??\n";
+		}
+		else {
+			cin.ignore(32767, '\n'); 
+			return a;
+		}
+	}
+}
+

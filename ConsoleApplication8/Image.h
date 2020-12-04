@@ -2,8 +2,12 @@
 #define IMAGE_H
 
 #include <iostream>
+#include <Windows.h>
 using std::cout;
 using std::endl;
+using std::cin;
+using std::system;	// clear window
+
 
 class Image
 {
@@ -12,15 +16,16 @@ private:
 	int my;
 	int *data;
 public:
-	Image(int x, int y);
+	Image(int, int);
+	//Image (){}
 	~Image();
 	int getMx() { return mx; }
 	int getMy() { return my; }
-	int get(int x, int y);
-	void set(int x, int y, uint8_t color);
-	void setY(int x, uint8_t color);
-	void setX(int y, uint8_t color);
+	int get(int, int);
+	void set(int, int, int);
+	void setY(int, int);
+	void setX(int, int);
 	void show();
+	static const int cinFunc();
 };
-
 #endif
