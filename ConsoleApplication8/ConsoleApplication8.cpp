@@ -14,12 +14,11 @@
 5.	Реализовать метод для сохранения изображения в файл в формате pnm
 	(https://ru.wikipedia.org/wiki/Portable_anymap)
 */
-
-#include <iostream>
 #include "Image.h"
 
+using std::cin;
+
 int main() {
-	cout << "\n\n\t\tProgramm started...\n\n";
 	// формируем изобржаение
 	Image a(10, 10);
 	a.show();
@@ -29,12 +28,13 @@ int main() {
 	a.setX(10, 1);
 	a.show();
 	// вызываем ошибки
-	a.setX(0, 1);
-	a.setY(0, 1);
-	a.set(0, 10, 1);
-	a.set(10, 0, 1);
-	a.get(2020, 2);
-	a.get(2, 2021);
+	a.setX(20, 1);
+	a.setY(-20, 1);
+	a.set(-20, 6, 1);
+	a.set(6, 20, 1);
+	a.get(20, 1);
+	a.get(1, -20);
+	cout << '\n';
 	a.show();
 	// рисуем плюсик по точкам
 	a.set(10, 6, 1);
@@ -43,6 +43,9 @@ int main() {
 	a.set(9, 5, 1);
 	a.set(8, 6, 1);
 	a.show();
+	// вызываем ошибки
+	Image b(-1, 10);
+	cout << '\n';
 
 	return 0;
 }
