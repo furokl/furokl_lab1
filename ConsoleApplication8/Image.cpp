@@ -2,7 +2,7 @@
 
 Image::Image(int x, int y)
 	: mx(x), my(y) {
-	data = new (std::nothrow) int[mx*my]();
+	data = new (std::nothrow) int[mx*my]();	// () - null
 	if (!data)
 		cout << "Could not allocate memory" << endl;
 }
@@ -19,7 +19,7 @@ int Image::get(int x, int y) {
 		if (y < 1 || y > my)
 			throw y;
 
-		return data[(x - 1) + (y - 1) * x];
+		return data[(x - 1) + (y - 1) * mx];
 	}
 	catch (const int ex) {
 		cout << "!!!\tinvalid variable\tget:\t" << ex << endl;
@@ -27,7 +27,7 @@ int Image::get(int x, int y) {
 }
 
 // set X, Y
-void Image::set(int x, int y, int color) {
+void Image::set(int x, int y, uint8_t color) {
 	try {
 		if (x < 1 || x > mx)
 			throw x;
@@ -42,7 +42,7 @@ void Image::set(int x, int y, int color) {
 }
 
 // set Y line
-void Image::setY(int x, int color) {
+void Image::setY(int x, uint8_t color) {
 	try {
 		if (x < 1 || x > mx)
 			throw x;
@@ -56,7 +56,7 @@ void Image::setY(int x, int color) {
 }
 
 // set X line
-void Image::setX(int y, int color) {
+void Image::setX(int y, uint8_t color) {
 	try {
 		if (y < 1 || y > mx)
 			throw y;
@@ -85,7 +85,11 @@ void Image::show() {
 const int Image::cinFunc() {
 	while (true) {
 		int a;
-		cin >> a;
+		do{
+			cin >> a;
+			if (a < 0 || a > 32767)
+				cout << "!!!\tinvalid value,\tretry:\t\t   ";
+		} while (a < 0 || a > 32767);
 
 		if (cin.fail()) {
 			cin.clear(); 
@@ -98,4 +102,3 @@ const int Image::cinFunc() {
 		}
 	}
 }
-

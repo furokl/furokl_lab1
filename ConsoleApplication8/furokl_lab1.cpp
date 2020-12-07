@@ -14,8 +14,11 @@
 5.	Реализовать метод для сохранения изображения в файл в формате pnm
 	(https://ru.wikipedia.org/wiki/Portable_anymap)
 */
-#include "Image.h"
+
 #include "draw.h"
+#include <fstream>
+
+using std::ofstream;
 
 int main() {
 	int x, y;
@@ -24,18 +27,29 @@ int main() {
 		<< "\tQ - рисовать по точкам\n"
 		<< "\tW - рисовать вертикальными линиями\n"
 		<< "\tE - рисовать горизонтальными линиями\n"
+		<< "\tR - ластик\n"
 		<< "\n\tВведите размер желаемого изображения:\n"
 		<< "\t\t\t\t\tX: ";
 	x = Image::cinFunc();
 	cout << "\t\t\t\t\tY: ";
 	y = Image::cinFunc();
 	cout << "\n\n";
-	Image a(x, y);
-	a.show();
 	cout << "\n\tВозможен переход в редактор через q, w, e\n" << endl;
-	// TO DO
-	Draw b(1, 1);
+	Draw b(x, y);
+	b.show();
 	b.move();
+
+	// Вывод в Image.txt
+	ofstream fout("Image.txt");
+	for (int j = 1; j <= y; j++) {
+		int i = 1;
+		fout << "\t\t";
+		for (i; i <= x; i++) {
+			fout << b.get(i, j);
+			if (i % x == 0)
+				fout << "\n";
+		}
+	}
 
 	return 0;
 }

@@ -2,12 +2,10 @@
 #define IMAGE_H
 
 #include <iostream>
-#include <Windows.h>
+
 using std::cout;
 using std::endl;
 using std::cin;
-using std::system;	// clear window
-
 
 class Image
 {
@@ -17,14 +15,13 @@ private:
 	int *data;
 public:
 	Image(int, int);
-	//Image (){}
 	~Image();
 	int getMx() { return mx; }
 	int getMy() { return my; }
 	int get(int, int);
-	void set(int, int, int);
-	void setY(int, int);
-	void setX(int, int);
+	void set(int, int, uint8_t);
+	void setY(int, uint8_t);
+	void setX(int, uint8_t);
 	void show();
 	static const int cinFunc();
 };

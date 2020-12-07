@@ -1,9 +1,2 @@
-﻿  Image.cpp
-  draw.cpp
-c:\users\даниил\source\repos\consoleapplication8\consoleapplication8\draw.h(15): error C2512: Image: нет подходящего конструктора по умолчанию
-  c:\users\даниил\source\repos\consoleapplication8\consoleapplication8\image.h(12): note:  см. объявление "Image"
-  furokl_lab1.cpp
-c:\users\даниил\source\repos\consoleapplication8\consoleapplication8\draw.h(15): error C2512: Image: нет подходящего конструктора по умолчанию
-  c:\users\даниил\source\repos\consoleapplication8\consoleapplication8\image.h(12): note:  см. объявление "Image"
-  Создание кода...
-c:\users\даниил\source\repos\consoleapplication8\consoleapplication8\image.cpp(27): warning C4715: Image::get: значение возвращается не при всех путях выполнения
+﻿  draw.cpp
+  ConsoleApplication8.vcxproj -> C:\Users\Даниил\source\repos\ConsoleApplication8\x64\Debug\ConsoleApplication8.exe
