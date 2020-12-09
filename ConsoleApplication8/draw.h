@@ -2,9 +2,6 @@
 #define DRAW_H
 
 #include "Image.h"
-#include <Windows.h>
-
-using std::system;	// clear window
 
 class Draw : public Image
 {
@@ -23,7 +20,6 @@ public:
 	void keyLeft_move();
 	void keyUp_move();
 	void keyDown_move();
-
 };
 
 #endif

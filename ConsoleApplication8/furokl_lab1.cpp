@@ -18,29 +18,28 @@
 #include "draw.h"
 #include <fstream>
 
-using std::ofstream;
-
 int main() {
 	int x, y;
 	setlocale(LC_ALL, "Russian");
-	cout << "\n\n\t\tПривет!\n\n"
+	std::cout << "\n\n\t\tПривет!\n\n"
 		<< "\tQ - рисовать по точкам\n"
 		<< "\tW - рисовать вертикальными линиями\n"
 		<< "\tE - рисовать горизонтальными линиями\n"
 		<< "\tR - ластик\n"
+		<< "\tesc - закрыть приложение\n"
 		<< "\n\tВведите размер желаемого изображения:\n"
 		<< "\t\t\t\t\tX: ";
 	x = Image::cinFunc();
-	cout << "\t\t\t\t\tY: ";
+	std::cout << "\t\t\t\t\tY: ";
 	y = Image::cinFunc();
-	cout << "\n\n";
-	cout << "\n\tВозможен переход в редактор через q, w, e\n" << endl;
+	std::cout << "\n\n";
+	std::cout << "\n\tВозможен переход в редактор через q, w, e\n" << std::endl;
 	Draw b(x, y);
 	b.show();
 	b.move();
 
 	// Вывод в Image.txt
-	ofstream fout("Image.txt");
+	std::ofstream fout("Image.txt");
 	for (int j = 1; j <= y; j++) {
 		int i = 1;
 		fout << "\t\t";

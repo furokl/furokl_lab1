@@ -4,7 +4,7 @@ Image::Image(int x, int y)
 	: mx(x), my(y) {
 	data = new (std::nothrow) int[mx*my]();	// () - null
 	if (!data)
-		cout << "Could not allocate memory" << endl;
+		std::cout << "Could not allocate memory" << std::endl;
 }
 Image::~Image() {
 	delete[] data;
@@ -22,7 +22,7 @@ int Image::get(int x, int y) {
 		return data[(x - 1) + (y - 1) * mx];
 	}
 	catch (const int ex) {
-		cout << "!!!\tinvalid variable\tget:\t" << ex << endl;
+		std::cout << "!!!\tinvalid variable\tget:\t" << ex << std::endl;
 	}
 }
 
@@ -37,7 +37,7 @@ void Image::set(int x, int y, uint8_t color) {
 		data[mx * (y - 1) + (x - 1)] = color;
 	}
 	catch (const int ex) {
-		cout << "!!!\tinvalid variable\tset:\t" << ex << endl;
+		std::cout << "!!!\tinvalid variable\tset:\t" << ex << std::endl;
 	}
 }
 
@@ -51,7 +51,7 @@ void Image::setY(int x, uint8_t color) {
 			data[mx * i + (x - 1)] = color;
 	}
 	catch (const int ex) {
-		cout << "!!!\tinvalid variable\tsetY:\t" << ex << endl;
+		std::cout << "!!!\tinvalid variable\tsetY:\t" << ex << std::endl;
 	}
 }
 
@@ -65,7 +65,7 @@ void Image::setX(int y, uint8_t color) {
 			data[mx * (y - 1) + i] = color;
 	}
 	catch (const int ex) {
-		cout << "!!!\tinvalid variable\tsetX:\t" << ex << endl;
+		std::cout << "!!!\tinvalid variable\tsetX:\t" << ex << std::endl;
 	}
 }
 
@@ -73,31 +73,31 @@ void Image::setX(int y, uint8_t color) {
 void Image::show() {
 	for (int i = 0; i < mx*my; i++) {
 		if (i == 0)
-			cout << '\t';
-		cout << data[i];
+			std::cout << '\t';
+		std::cout << data[i];
 		if (i % mx == mx - 1)
-			cout << "\n\t";
+			std::cout << "\n\t";
 	}
-	cout << '\n';
+	std::cout << '\n';
 }
 
-// cin >>
+// std::cin >>
 const int Image::cinFunc() {
 	while (true) {
 		int a;
 		do{
-			cin >> a;
+			std::cin >> a;
 			if (a < 0 || a > 32767)
-				cout << "!!!\tinvalid value,\tretry:\t\t   ";
+				std::cout << "!!!\tinvalid value,\tretry:\t\t   ";
 		} while (a < 0 || a > 32767);
 
-		if (cin.fail()) {
-			cin.clear(); 
-			cin.ignore(32767, '\n');
-			cout << "\n??\n";
+		if (std::cin.fail()) {
+			std::cin.clear(); 
+			std::cin.ignore(32767, '\n');
+			std::cout << "\n??\n";
 		}
 		else {
-			cin.ignore(32767, '\n'); 
+			std::cin.ignore(32767, '\n'); 
 			return a;
 		}
 	}
