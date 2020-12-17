@@ -1,5 +1,6 @@
 #include "draw.h"
 #include <Windows.h>
+#include <iostream>
 
 Draw::Draw(int dx, int dy) 
 	: Image(dx, dy) 

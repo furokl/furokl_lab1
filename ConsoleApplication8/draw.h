@@ -8,7 +8,7 @@ class Draw : public Image
 private:
 	int dx = 1;
 	int dy = 1;
-	uint8_t mcolor = 1;
+	int mcolor = 1;
 public:
 	Draw(int, int);
 	void move();

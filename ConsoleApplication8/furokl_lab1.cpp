@@ -17,6 +17,7 @@
 
 #include "draw.h"
 #include <fstream>
+#include <iostream>
 
 int main() {
 	int x, y;

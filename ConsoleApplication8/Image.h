@@ -1,8 +1,6 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#include <iostream>
-
 class Image
 {
 private:
@@ -15,9 +13,9 @@ public:
 	int getMx() { return mx; }
 	int getMy() { return my; }
 	int get(int, int);
-	void set(int, int, uint8_t);
-	void setY(int, uint8_t);
-	void setX(int, uint8_t);
+	void set(int, int, int);
+	void setY(int, int);
+	void setX(int, int);
 	void show();
 	static const int cinFunc();
 };

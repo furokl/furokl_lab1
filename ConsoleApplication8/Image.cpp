@@ -1,4 +1,5 @@
 #include "image.h"
+#include <iostream>
 
 Image::Image(int x, int y)
 	: mx(x), my(y) {
@@ -27,7 +28,7 @@ int Image::get(int x, int y) {
 }
 
 // set X, Y
-void Image::set(int x, int y, uint8_t color) {
+void Image::set(int x, int y, int color) {
 	try {
 		if (x < 1 || x > mx)
 			throw x;
@@ -42,7 +43,7 @@ void Image::set(int x, int y, uint8_t color) {
 }
 
 // set Y line
-void Image::setY(int x, uint8_t color) {
+void Image::setY(int x, int color) {
 	try {
 		if (x < 1 || x > mx)
 			throw x;
@@ -56,7 +57,7 @@ void Image::setY(int x, uint8_t color) {
 }
 
 // set X line
-void Image::setX(int y, uint8_t color) {
+void Image::setX(int y, int color) {
 	try {
 		if (y < 1 || y > mx)
 			throw y;
